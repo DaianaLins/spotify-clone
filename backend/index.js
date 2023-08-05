@@ -3,9 +3,10 @@ const request = require('request'); // "Request" library
 const cors = require('cors');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
+require("dotenv").config()
 
-const client_id = '00e8a9f6043249de96df0306ca05f819'; // Your client id
-const client_secret = '36d531c7696a406ab85fa83679d304b2'; // Your secret
+const client_id = process.env.CLIENTE_ID; // Your client id
+const client_secret = process.env.CLIENTE_SECRET;  // Your secret
 const redirect_uri = 'http://localhost:3000/'; // Your redirect uri
 
 /**
@@ -27,11 +28,6 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 
-const corsOptions ={
-  origin:'http://localhost:3000/login', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200
-}
 
 app.use(express.static(__dirname + '/public'))
    .use(cors())
@@ -62,6 +58,7 @@ app.get('/callback', function(req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
+  console.log('aqui')
 
   var code = req.query.code || null;
   var state = req.query.state || null;
@@ -105,7 +102,8 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
+        // return
+        res.redirect('/' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
