@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {  useState } from 'react';
 import { loginRoute } from '../../service/API';
 import axios from 'axios';
-import styles from './styles.module.css'
+import styles from './styles.module.css';
+
 
 
 const Login = () => {
-
     const SignIn = async () => {
         await axios.get(loginRoute).then((res) => {
             window.open(res.data.redirectUrl , '_self')
@@ -15,11 +15,13 @@ const Login = () => {
         })
     }
 
+
+
     return (
         <div className={styles.container} >
             <img src="https://logodownload.org/wp-content/uploads/2016/09/Spotify-logo.png" className={styles.img} alt="" width={250} />
-            <section className={styles.content}>
-                <button onClick={SignIn} className={styles.button}  >Entrar</button>
+            <section >
+                <button onClick={SignIn} className={styles.button} >Entrar</button>
             </section>
         </div>
     );
