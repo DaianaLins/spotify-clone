@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./Home";
+import Home from "./Auth/Home";
 import Login from "./Login";
 import Loading from "./Loading";
 

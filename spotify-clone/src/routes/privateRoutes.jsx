@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Navigate} from 'react-router-dom'
 
 export const  PrivateRoute = ({children}) => {
-    const user = localStorage.getItem("user")
-  return user ? children : <Navigate to="/login" />;
+  const user = localStorage.getItem("user")
+
+  return !!user ? children : <Navigate to="/login" />;
 }
 

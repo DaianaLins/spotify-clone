@@ -1,16 +1,13 @@
-import React, {
-  createContext,
-  useContext,
-} from "react";
-import axios from "axios";
-import { refreshTokenRoute, loginRoute, callbackRoute } from "../services/API";
+import React, { createContext, useContext } from "react";
 
 const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
   const token = localStorage.getItem("token");
-  const user = localStorage.getItem("user")
-  
+  const user = localStorage.getItem("user");
+
+ 
+
   const contextValue = {
     user,
     token,

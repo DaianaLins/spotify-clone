@@ -37,7 +37,6 @@ export const refreshToken = async (refresh_token) => {
 export const getUser = async () => {
   try {
     const resp = await apiSpotifyUser.get("/v1/me");
-    localStorage.setItem("user", JSON.stringify(resp.data));
     return resp
   } catch (e) {
     console.log("Error", e);

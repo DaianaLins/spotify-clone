@@ -1,9 +1,13 @@
+.content{
+    flex-direction: column;
+}
+
 .container{
         display: flex;
         justify-content: flex-end;
         height: 10vh;
         align-items: center;
-        /* background: white; */
+        flex-direction: row;
         padding: 20px;
 }
 
@@ -19,8 +23,79 @@
     background-color: #242424;
     border-radius: 30px;
     border: 0;
-    padding: 6px 36px;
+    padding: 6px 48px;
     color: #fff!important;
+    font-size: 15px;
     text-overflow: ellipsis;
-    font-weight: 700;
+    font-weight: 600;
+}
+
+.input_header{
+    display: flex;
+    align-items: center;
+}
+
+.icon{
+    position: absolute; 
+    padding-left: 0.9rem;
+    cursor: pointer;
+}
+
+.iconClear{
+    position: absolute; 
+    right: 8rem;
+    cursor: pointer;
+}
+
+.name{
+    padding: 1rem;
+    color: #fff;
+    font-size: 16px;
+}
+
+.modal{
+    background: #2a2a2a;
+    display: flex;
+    width: 15%;
+    border-radius: 10px;
+    float: right;     
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 20px;
+    z-index: 99;
+}
+.modal_content{
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    padding: 0.5rem;  
+}
+
+.button{
+    background: transparent;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    cursor: pointer;
+    border-radius: 8px; 
+    flex-direction: row;
+    display: flex;  
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button:hover{
+    background:#727272;
+}
+
+.button:last-child{
+    margin-bottom: 0px;
+}
+
+p{
+    
+    color: #fff;
+}
+
+.iconNew{
 }
