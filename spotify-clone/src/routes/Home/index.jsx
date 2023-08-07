@@ -1,34 +1,22 @@
-import React, { Component, useEffect } from 'react';
-import { callbackRoute } from '../../service/API';
-import axios from 'axios';
+import React, { Component, useEffect } from "react";
+import { callbackRoute, refreshTokenRoute } from "../../services/API";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useGlobal } from "../../hooks/GlobalContext";
 
-const Home = ()  => {
-  const url_string = window.location.href;
-  const url = new URL(url_string);
-  const data = url.searchParams.get("?");
+const Home = () => {
+  
+  const refresh_token = localStorage.getItem("refresh_token");
 
-  const getCallback = async  () =>{
-    console.log('entrou')
-    await axios.get(callbackRoute, {code: data}).then((res)=>{
-      console.log(res)
-    }).catch((err)=>{
-      console.log(err)
-    })
-  }
+  const { getCallback, token,  onRefresh } = useGlobal();
 
-  useEffect(()=>{
-
-    getCallback();
-  }, [data])
-   
- 
 
 
   return (
-    <div >
+    <div>
       <h1>Home</h1>
     </div>
   );
-}
+};
 
 export default Home;

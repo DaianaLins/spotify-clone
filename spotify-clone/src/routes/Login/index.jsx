@@ -1,21 +1,12 @@
 import React, {  useState } from 'react';
-import { loginRoute } from '../../service/API';
+import { loginRoute } from '../../services/API';
 import axios from 'axios';
 import styles from './styles.module.css';
+import { SignIn } from '../../services/interceptores';
 
 
 
 const Login = () => {
-    const SignIn = async () => {
-        await axios.get(loginRoute).then((res) => {
-            window.open(res.data.redirectUrl , '_self')
-        }).catch((err) => {
-
-            console.log(err)
-        })
-    }
-
-
 
     return (
         <div className={styles.container} >

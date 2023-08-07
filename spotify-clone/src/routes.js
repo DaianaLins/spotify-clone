@@ -1,25 +1,26 @@
-import React, { Fragment } from "react";
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route, } from 'react-router-dom'
+
 
 import Home from "./routes/Home";
 import Login from "./routes/Login";
+import Loading from "./routes/Loading";
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Home />,
-    },
-    {
-        path: "/login",
-        element: <Login />,
-    },
-]);
+
+
 const AppRoutes = () => {
+
+    const token = localStorage.getItem("token")
+
     return (
-        <RouterProvider router={router} />
+        <BrowserRouter>
+            <Routes>
+                <Route path="/login" element={<Login />} />
+
+                <Route path="/" element={<Loading />} />
+                <Route path="/home" element={<Home />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
