@@ -6,12 +6,6 @@ import { useGlobal } from "../../hooks/GlobalContext";
 
 const Home = () => {
   
-  const refresh_token = localStorage.getItem("refresh_token");
-
-  const { getCallback, token,  onRefresh } = useGlobal();
-
-
-
   return (
     <div>
       <h1>Home</h1>

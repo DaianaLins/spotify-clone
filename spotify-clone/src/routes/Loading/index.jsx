@@ -12,12 +12,7 @@ const Loading = () => {
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
   const navigate = useNavigate();
-  
-  const refresh_token = localStorage.getItem("refresh_token");
-  localStorage.setItem("code", code);
-  localStorage.setItem("state", state);
-
-
+ 
   useEffect(() => {
     getCallback(code, state).then((res)=>{
       refreshToken(res).then((res)=>{
@@ -28,6 +23,10 @@ const Loading = () => {
     })  
     
   }, [code, state]);
+
+  useEffect(()=>{
+    if(!code) navigate('/login')
+  }, [])
 
   return <div />;
 }
