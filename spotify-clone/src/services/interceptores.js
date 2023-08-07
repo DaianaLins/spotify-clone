@@ -1,13 +1,16 @@
 
 import axios from "axios";
-import { host } from "./API";
+import { host, api } from "./API";
 
-const customFetch = axios.create({
+const apiSpotifyAuth = axios.create({
   baseURL: `${host}`,
 });
 
+const apiSpotifyUser = axios.create({
+  baseURL: `${api}`,
+});
 
-customFetch.interceptors.request.use(
+apiSpotifyUser.interceptors.request.use(
   async (config) => {
     const token = localStorage.getItem("token");
 
@@ -23,7 +26,7 @@ customFetch.interceptors.request.use(
 
 export const refreshToken = async (refresh_token) => {
   try {
-    const resp = await customFetch.get("/refresh_token", { params: { refresh_token: refresh_token } });
+    const resp = await apiSpotifyAuth.get("/refresh_token", { params: { refresh_token: refresh_token } });
     localStorage.setItem("token", resp.data.access_token);
     return resp.data.access_token;
   } catch (e) {
@@ -31,9 +34,20 @@ export const refreshToken = async (refresh_token) => {
   }
 };
 
+export const getUser = async () => {
+  try {
+    const resp = await apiSpotifyUser.get("/v1/me");
+    localStorage.setItem("user", JSON.stringify(resp.data));
+    return resp
+  } catch (e) {
+    console.log("Error", e);
+  }
+};
+
+
 export const SignIn = async () => {
   try{
-    const res = await customFetch.get("/login");
+    const res = await apiSpotifyAuth.get("/login");
       window.open(res.data.redirectUrl, "_self");
   } 
   catch(err){
@@ -43,7 +57,7 @@ export const SignIn = async () => {
 
 export const getCallback = async (code, state) => {
   try{
-    const res = await customFetch.get("/callback", { params: { code: code, state: state } });
+    const res = await apiSpotifyAuth.get("/callback", { params: { code: code, state: state } });
     return res.data.tokens.refresh_token;
   } catch(err) {
     console.log(err)
@@ -51,7 +65,7 @@ export const getCallback = async (code, state) => {
 };
 
 
-customFetch.interceptors.response.use(
+apiSpotifyUser.interceptors.response.use(
   (response) => {
     console.log(response)
     return response;
@@ -68,10 +82,10 @@ customFetch.interceptors.response.use(
       const access_token = resp.response.accessToken;
 
       // addTokenToLocalStorage(access_token);
-      customFetch.defaults.headers.common[
+      apiSpotifyUser.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${access_token}`;
-      return customFetch(originalRequest);
+      return apiSpotifyAuth(originalRequest);
     }
     return Promise.reject(error);
   }

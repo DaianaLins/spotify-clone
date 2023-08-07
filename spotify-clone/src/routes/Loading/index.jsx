@@ -1,10 +1,8 @@
 import React, {useEffect} from 'react';
-import { callbackRoute, refreshTokenRoute } from "../../services/API";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
-import { useGlobal } from '../../hooks/GlobalContext';
-import { getCallback, refreshToken } from '../../services/interceptores';
-// import { Container } from './styles';
+import { getCallback, refreshToken, getUser } from '../../services/interceptores';
+
 
 const Loading = () => {
     const url_string = window.location.href;
@@ -16,7 +14,13 @@ const Loading = () => {
   useEffect(() => {
     getCallback(code, state).then((res)=>{
       refreshToken(res).then((res)=>{
-        navigate('/home')
+        getUser().then((res)=>{
+          navigate('/home')
+
+        }).catch((err)=>{
+          console.log(err)
+        })
+
       })
     }).catch((err)=>{
       console.log(err)
