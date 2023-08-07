@@ -1,0 +1,26 @@
+.container{
+        display: flex;
+        justify-content: flex-end;
+        height: 10vh;
+        align-items: center;
+        /* background: white; */
+        padding: 20px;
+}
+
+.img{
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.input{
+    margin-right: 2rem;
+    height: 48px;
+    width: 20rem;
+    background-color: #242424;
+    border-radius: 30px;
+    border: 0;
+    padding: 6px 36px;
+    color: #fff!important;
+    text-overflow: ellipsis;
+    font-weight: 700;
+}

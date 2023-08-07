@@ -1,14 +1,13 @@
-import React, { Component, useEffect } from "react";
-import { callbackRoute, refreshTokenRoute } from "../../services/API";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { useGlobal } from "../../hooks/GlobalContext";
+import Header from "../../components/Header";
 
 const Home = () => {
+  const {user} = useGlobal();
   
   return (
     <div>
-      <h1>Home</h1>
+      {user && <Header user={user} />}
     </div>
   );
 };

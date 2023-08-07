@@ -5,7 +5,7 @@ import { getCallback, refreshToken, getUser } from '../../services/interceptores
 
 
 const Loading = () => {
-    const url_string = window.location.href;
+  const url_string = window.location.href;
   const url = new URL(url_string);
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
