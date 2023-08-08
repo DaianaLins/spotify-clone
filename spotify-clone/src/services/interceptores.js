@@ -6,8 +6,9 @@ const apiSpotifyAuth = axios.create({
   baseURL: `${host}`,
 });
 
-const apiSpotifyUser = axios.create({
+export const apiSpotifyUser = axios.create({
   baseURL: `${api}`,
+  
 });
 
 apiSpotifyUser.interceptors.request.use(
@@ -16,6 +17,7 @@ apiSpotifyUser.interceptors.request.use(
 
     if (token) {
       config.headers["Authorization"] = ` Bearer ${token}`;
+      config.headers["Content-Type"] = "application/json"
     } 
     return config;
   },

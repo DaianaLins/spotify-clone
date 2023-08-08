@@ -19,7 +19,7 @@ const Header = ({ user }) => {
   return (
     <section className={styles.content}>
       <div className={styles.container}>
-        <div className={styles.input_header}>
+        <div className={styles.input_header} >
           <FiSearch color="#fff" size={24} className={styles.icon} />
           <input
             className={styles.input}
@@ -59,6 +59,7 @@ const Header = ({ user }) => {
             <div className={styles.button}>
               <p className={styles.span}>Perfil</p>
             </div>
+            <hr /> 
             <div className={styles.button} onClick={() => logout()}>
               <p className={styles.span}>Sair</p>
             </div>

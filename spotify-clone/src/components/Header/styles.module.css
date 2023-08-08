@@ -36,7 +36,7 @@
 }
 
 .icon{
-    position: absolute; 
+    position: fixed; 
     padding-left: 0.9rem;
     cursor: pointer;
 }
@@ -63,7 +63,10 @@
     align-items: center;
     flex-direction: row;
     margin-right: 20px;
-    z-index: 99;
+    position: absolute;
+    z-index: 100;
+    box-shadow: 0 16px 24px rgba(0,0,0,.3), 0 6px 8px rgba(0,0,0,.2);
+    right: 20px ;
 }
 .modal_content{
     flex-direction: column;
@@ -99,3 +102,10 @@ p{
 
 .iconNew{
 }
+
+hr {
+	border: 0;
+    width: 100%;
+	border-top: 2px solid gray;
+}
+
