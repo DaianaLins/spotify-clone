@@ -7,6 +7,7 @@ const GlobalProvider = ({ children }) => {
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
   const [topArtists, setTopArtists] = useState()
+  const [recommendations, setRecommendations] = useState()
 
   const getAlbum = async () =>{
     const id = '4aawyAB9vmqN3uQ7FjRGTy'
@@ -19,6 +20,11 @@ const GlobalProvider = ({ children }) => {
     return res
   } 
 
+  const getRecommendations = async () =>{
+    const res =await apiSpotifyUser.get('/v1/recommendations?limit=4&market=BR&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Cpop%2C+mpb&seed_tracks=0c6xIDDpzE81m2q797ordA&max_popularity=85')
+    return res
+  }
+
 
   const contextValue = {
     user,
@@ -26,7 +32,10 @@ const GlobalProvider = ({ children }) => {
     getAlbum,
     getTopMe,
     topArtists,
-    setTopArtists
+    setTopArtists,
+    getRecommendations,
+    recommendations,
+    setRecommendations
   };
 
   return (

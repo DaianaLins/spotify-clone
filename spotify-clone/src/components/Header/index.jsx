@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { FiSearch } from "react-icons/fi";
 import { MdClear, MdOutlineOpenInNew } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import ModalHeader from "./ModalHeader";
 
 const Header = ({ user }) => {
   const [data, setData] = useState(JSON.parse(user));
@@ -20,6 +21,7 @@ const Header = ({ user }) => {
     <section className={styles.content}>
       <div className={styles.container}>
         <div className={styles.input_header} >
+          
           <FiSearch color="#fff" size={24} className={styles.icon} />
           <input
             className={styles.input}
@@ -48,23 +50,7 @@ const Header = ({ user }) => {
         />
       </div>
       {showModal && (
-        <div className={styles.modal}>
-          <div className={styles.modal_content}>
-            <div className={styles.button} onClick={()=> window.open("https://www.spotify.com/br-pt/account/overview/")}>
-              <p className={styles.span}>Conta</p>
-              <MdOutlineOpenInNew color="#fff"
-              size={24}
-              className={styles.iconNew} />
-            </div>
-            <div className={styles.button}>
-              <p className={styles.span}>Perfil</p>
-            </div>
-            <hr /> 
-            <div className={styles.button} onClick={() => logout()}>
-              <p className={styles.span}>Sair</p>
-            </div>
-          </div>
-        </div>
+        <ModalHeader logout={logout} />
       )}
     </section>
   );
