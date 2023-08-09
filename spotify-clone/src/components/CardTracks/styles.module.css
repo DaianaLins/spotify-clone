@@ -1,0 +1,42 @@
+.content{
+    width: 206px;
+    height: 304px;
+    display: flex;
+    justify-content: center;   
+    align-items:center; 
+    background: #2a2a2a;
+    border-radius: 14px;
+    padding: 0.8rem;
+    
+    flex-direction: column;
+}
+
+.img{
+    border-radius: 14px;  
+      
+    }
+
+span{
+    color: #b3b3b3;
+    font-size: 1rem;
+    font-weight: 600;
+}
+        
+a{
+    text-decoration: none;
+}
+        
+a:hover{
+    text-decoration: underline;
+    color: #b3b3b3 ;
+}    
+
+.btn_play{
+    min-width: 200px;
+    margin-top: 10px;
+    display: none;
+}
+
+button:hover{
+    display: inline-block;
+}

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { apiSpotifyUser } from "../services/interceptores";
 
 const GlobalContext = createContext();
@@ -8,6 +8,7 @@ const GlobalProvider = ({ children }) => {
   const user = localStorage.getItem("user");
   const [topArtists, setTopArtists] = useState()
   const [recommendations, setRecommendations] = useState()
+  const [savedTracks, setSavedTracks] = useState()
 
   const getAlbum = async () =>{
     const id = '4aawyAB9vmqN3uQ7FjRGTy'
@@ -25,6 +26,32 @@ const GlobalProvider = ({ children }) => {
     return res
   }
 
+  const getSavedTracks = async () =>{
+    const res = await apiSpotifyUser.get('/v1/me/tracks?market=BR&offset=0&limit=20')
+    return res
+  } 
+
+  useEffect(() => {
+    getTopMe()
+      .then((res) => {
+        setTopArtists([res.data]);
+      })
+      .catch((err) => {});
+
+    getRecommendations()
+      .then((res) => {
+        setRecommendations([res.data.tracks]);
+      })
+      .catch((err) => {});
+    
+    getSavedTracks()
+      .then((res) => {
+        setSavedTracks([res.data.items]);
+      })
+      .catch((err) => {});  
+  }, []);
+
+
 
   const contextValue = {
     user,
@@ -35,7 +62,10 @@ const GlobalProvider = ({ children }) => {
     setTopArtists,
     getRecommendations,
     recommendations,
-    setRecommendations
+    setRecommendations,
+    getSavedTracks,
+    savedTracks,
+    setSavedTracks
   };
 
   return (

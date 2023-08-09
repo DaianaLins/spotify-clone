@@ -1,10 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../../components/Header";
 import { useGlobal } from "../../../hooks/GlobalContext";
 import styles from "./styles.module.css";
 import Menu from "../../../components/Menu";
 import { apiSpotifyUser } from "../../../services/interceptores";
+import Content from "../../../components/Content";
+import Card from "../../../components/Card";
+import CardTracks from "../../../components/CardTracks";
 
 const Home = () => {
   const user = localStorage.getItem("user");
@@ -16,27 +19,21 @@ const Home = () => {
     getRecommendations,
     recommendations,
     setRecommendations,
+    savedTracks,
   } = useGlobal();
 
-  useEffect(() => {
-    getTopMe()
-      .then((res) => {
-        setTopArtists([res.data]);
+  const [tracks, setTracks] = useState()
+  
+  useEffect(()=>{
+    savedTracks?.map((item)=>{
+      Object.keys(item).map((key)=>{
+  
+        setTracks([item[key].track]);
       })
-      .catch((err) => {});
+      
+    })
 
-    getRecommendations()
-      .then((res) => {
-        setRecommendations([res.data.tracks]);
-      })
-      .catch((err) => {});
-  }, []);
-
-  const truncate = (str, n) => {
-    return str?.length > n ? str.substring(0, n - 1) + "..." : str;
-  };
-
-  console.log(recommendations)
+  }, [savedTracks])
 
   return (
     <div>
@@ -48,36 +45,18 @@ const Home = () => {
         <div className={styles.container}>
           <h1>Boa noite</h1>
           <section className={styles.layout_grid}>
-            {topArtists?.map((item, index) =>
-              Object.keys(item.items).map((key) => (
-                <div className={styles.content_artist}>
-                  <img
-                    className={styles.img_artist}
-                    src={item.items[key]?.images[0].url}
-                  />
-                  <h3>{item.items[key].name}</h3>
-                </div>
-              ))
-            )}
+            <Content data={topArtists} />
           </section>
 
           <h1>Recomendados para hoje</h1>
-
           <section className={styles.sectionItems}>
-            {recommendations?.map((item) =>
-              Object.keys(item).map((key) => (
-                <div className={styles.content} key={key}>
-                  <div className={styles.content_module}>
-                  <img className={styles.img} src={item[key].album.images[1].url} width={200} height={200} />
-                    <h1>{truncate(item[key].album.name, 19)}</h1>
-                    {/* {console.log(apiSpotifyUser+item[key].album.href.slice(23, 48))} */}
-                    <a href={item[key].album.href.slice(23, 48)}>
-                      <span>{item[key].album.artists[0].name}</span>
-                    </a>
-                  </div>
-                </div>
-              ))
-            )}
+            <Card data={recommendations} />
+          </section>
+
+          <h1>Suas músicas favoritas</h1>
+          <section className={styles.sectionItems}>
+        
+            <CardTracks data={tracks} />
           </section>
         </div>
       </div>
