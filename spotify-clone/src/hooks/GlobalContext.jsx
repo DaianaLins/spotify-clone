@@ -11,40 +11,39 @@ const GlobalProvider = ({ children }) => {
   const [savedTracks, setSavedTracks] = useState()
 
   const getAlbum = async () =>{
-    const id = '4aawyAB9vmqN3uQ7FjRGTy'
     const res = await apiSpotifyUser.get('/v1/me/albums')
     return res
   } 
 
-  const getTopMe = async () =>{
-    const res = await apiSpotifyUser.get('/v1/me/top/artists?limit=6')
+  const getTopMe = async ({limit}) =>{
+    const res = await apiSpotifyUser.get(`/v1/me/top/artists?limit=${limit}`)
     return res
   } 
 
-  const getRecommendations = async () =>{
-    const res =await apiSpotifyUser.get('/v1/recommendations?limit=4&market=BR&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Cpop%2C+mpb&seed_tracks=0c6xIDDpzE81m2q797ordA&max_popularity=85')
+  const getRecommendations = async ({limit}) =>{
+    const res =await apiSpotifyUser.get(`/v1/recommendations?limit=${limit}&market=BR&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Cpop%2C+mpb&seed_tracks=0c6xIDDpzE81m2q797ordA&max_popularity=85`)
     return res
   }
 
-  const getSavedTracks = async () =>{
-    const res = await apiSpotifyUser.get('/v1/me/tracks?market=BR&offset=0&limit=20')
+  const getSavedTracks = async ({offset, limit}) =>{
+    const res = await apiSpotifyUser.get(`/v1/me/tracks?market=BR&offset=${offset}&limit=${limit}`)
     return res
   } 
 
   useEffect(() => {
-    getTopMe()
+    getTopMe({limit: 6})
       .then((res) => {
         setTopArtists([res.data]);
       })
       .catch((err) => {});
 
-    getRecommendations()
+    getRecommendations({limit: 4})
       .then((res) => {
         setRecommendations([res.data.tracks]);
       })
       .catch((err) => {});
     
-    getSavedTracks()
+    getSavedTracks({offset: 0, limit:4})
       .then((res) => {
         setSavedTracks([res.data.items]);
       })

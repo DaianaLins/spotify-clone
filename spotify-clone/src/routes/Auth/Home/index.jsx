@@ -12,28 +12,10 @@ import CardTracks from "../../../components/CardTracks";
 const Home = () => {
   const user = localStorage.getItem("user");
   const {
-    getAlbum,
-    getTopMe,
-    setTopArtists,
     topArtists,
-    getRecommendations,
     recommendations,
-    setRecommendations,
     savedTracks,
   } = useGlobal();
-
-  const [tracks, setTracks] = useState()
-  
-  useEffect(()=>{
-    savedTracks?.map((item)=>{
-      Object.keys(item).map((key)=>{
-  
-        setTracks([item[key].track]);
-      })
-      
-    })
-
-  }, [savedTracks])
 
   return (
     <div>
@@ -56,7 +38,7 @@ const Home = () => {
           <h1>Suas músicas favoritas</h1>
           <section className={styles.sectionItems}>
         
-            <CardTracks data={tracks} />
+            <CardTracks data={savedTracks} />
           </section>
         </div>
       </div>
