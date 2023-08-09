@@ -11,7 +11,6 @@ const CardTracks = ({data}) => {
       {data && (
         Object.values(data[0])?.map((item, key) => (
           <div className={styles.content} key={key} >
-            {console.log(item, key)}
             <div className={styles.content_module}>
               {item.track?.preview_url && (
                 <div style={{position: 'relative', zIndex: 2}}>

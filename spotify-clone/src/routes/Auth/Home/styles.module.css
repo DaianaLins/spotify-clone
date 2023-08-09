@@ -39,25 +39,25 @@ color: #fff;
 font-size: 1.2rem;
 }
 .home{
-background: #1a1a1a; 
-margin: 1rem; 
-border-radius: 14px; 
-height: 95.5vh;
-display: grid;   
-overflow-y: scroll;
-scroll-behavior: smooth;
-grid-template-columns: repeat(1, 2fr);
+  background: #1a1a1a; 
+  margin: 1rem; 
+  border-radius: 14px; 
+  height: 95.5vh;
+  display: grid;   
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  grid-template-columns: repeat(1, 2fr);
 }
 .home::-webkit-scrollbar {
-width: 12px; /* width of the entire scrollbar */
+  width: 12px; /* width of the entire scrollbar */
 }
 
 .home::-webkit-scrollbar-track {
-background: transparent;/* color of the tracking area */
+  background: transparent;/* color of the tracking area */
 }
 
 .home::-webkit-scrollbar-thumb {
-background-color: hsla(0,0%,100%,.07);
+  background-color: hsla(0,0%,100%,.07);
 /* border-radius: 20px; */
 /* border: 3px solid orange;   */
 }
@@ -71,16 +71,61 @@ background-color: hsla(0,0%,100%,.07);
 
 
 span{
-color: #b3b3b3;
-font-size: 1rem;
-font-weight: 600;
+  color: #b3b3b3;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 a{
-text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover{
-text-decoration: underline;
-color: #b3b3b3 ;
+  text-decoration: underline;
+  color: #b3b3b3 ;
+}
+
+.layout_grid_search{
+  display:grid;
+  grid-template-columns: repeat(2, 2fr);
+}
+
+.container_result{
+  width: 462px;
+  height: 237px;
+  background: hsla(0,0%,100%,.07);
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  margin-right: 0.5rem;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+}
+
+.content_search{
+  padding: 20px;
+  display: grid;
+  justify-content: flex-start;
+  align-items: flex-start;
+  grid-template-columns: repeat(2, 2fr);
+  flex-direction: column;
+}
+
+.title{
+  font-size: 1.5rem;
+}
+
+.img_artist{
+  width: 92px;
+  height: 92px;
+  background: #fff;
+  border-radius: 6px;
+  margin: 1.5rem 1.5rem 0 1.5rem;
+  box-shadow: 0 16px 24px rgba(0,0,0,.3), 0 6px 8px rgba(0,0,0,.2);
+}
+
+.container_result:hover{
+  color: #000;
+  background-color: hsla(0,0%,100%,.1);
+  transition: all 0.2s;
 }

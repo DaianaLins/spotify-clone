@@ -7,10 +7,10 @@
 .container{
         display: flex;
         justify-content: flex-end;
-        height: 10vh;
+        height: 1rem;
         align-items: center;
         flex-direction: row;
-        padding: 20px;
+        padding: 2rem 2rem 0 2rem;
 }
 
 .img{

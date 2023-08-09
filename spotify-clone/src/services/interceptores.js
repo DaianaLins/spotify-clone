@@ -68,7 +68,6 @@ export const getCallback = async (code, state) => {
 
 apiSpotifyUser.interceptors.response.use(
   (response) => {
-    console.log(response)
     return response;
   },
   async function (error) {

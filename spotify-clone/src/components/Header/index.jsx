@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { FiSearch } from "react-icons/fi";
 import { MdClear, MdOutlineOpenInNew } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import ModalHeader from "./ModalHeader";
 
-const Header = ({ user }) => {
+const Header = ({ user, search, setSearch, getSearchItems}) => {
   const [data, setData] = useState(JSON.parse(user));
-  const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
@@ -22,7 +21,7 @@ const Header = ({ user }) => {
       <div className={styles.container}>
         <div className={styles.input_header} >
           
-          <FiSearch color="#fff" size={24} className={styles.icon} />
+          <FiSearch color="#fff" size={24} className={styles.icon} onClick={()=> getSearchItems({search: search})} />
           <input
             className={styles.input}
             placeholder="O que você quer ouvir?"

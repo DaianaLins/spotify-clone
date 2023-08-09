@@ -9,6 +9,7 @@ const GlobalProvider = ({ children }) => {
   const [topArtists, setTopArtists] = useState()
   const [recommendations, setRecommendations] = useState()
   const [savedTracks, setSavedTracks] = useState()
+  const [search, setSearch] = useState("");
 
   const getAlbum = async () =>{
     const res = await apiSpotifyUser.get('/v1/me/albums')
@@ -30,25 +31,11 @@ const GlobalProvider = ({ children }) => {
     return res
   } 
 
-  useEffect(() => {
-    getTopMe({limit: 6})
-      .then((res) => {
-        setTopArtists([res.data]);
-      })
-      .catch((err) => {});
+  const getSearchItems = async ({search}) =>{
+    const res = await apiSpotifyUser.get(`/v1/search?q=${search}&type=album%2Ctrack%2Cplaylist&locale=pt-BR%2Cpt%3Bq%3D0.9&offset=0&limit=20&include_external=audio`)
 
-    getRecommendations({limit: 4})
-      .then((res) => {
-        setRecommendations([res.data.tracks]);
-      })
-      .catch((err) => {});
-    
-    getSavedTracks({offset: 0, limit:4})
-      .then((res) => {
-        setSavedTracks([res.data.items]);
-      })
-      .catch((err) => {});  
-  }, []);
+    return res
+  } 
 
 
 
@@ -64,7 +51,8 @@ const GlobalProvider = ({ children }) => {
     setRecommendations,
     getSavedTracks,
     savedTracks,
-    setSavedTracks
+    setSavedTracks,
+    getSearchItems
   };
 
   return (
