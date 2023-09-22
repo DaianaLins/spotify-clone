@@ -13,7 +13,7 @@ const CardTracks = ({data}) => {
           <div className={styles.content} key={key} >
             <div className={styles.content_module}>
               {item.track?.preview_url && (
-                <div style={{position: 'relative', zIndex: 2}}>
+                <div className={styles.button}>
                   <ButtonSong hrfe={item.track.preview_url} />
                 </div>
               )}
@@ -31,8 +31,7 @@ const CardTracks = ({data}) => {
                 key={key}
                 src={`${item.track?.preview_url}`}
               />
-
-              <h1>{truncate(item.track?.album?.name, 19)}</h1>
+              <h1>{truncate(item.track.name, 19)}</h1>
               {/* {console.log(apiSpotifyUser+item.track?.album.href.slice(23, 48))} */}
               <a href={item.track?.album?.href.slice(23, 48)}>
                 <span>{item.track?.album?.artists[0].name}</span>

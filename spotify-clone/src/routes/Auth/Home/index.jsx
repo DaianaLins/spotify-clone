@@ -9,6 +9,7 @@ import Card from "../../../components/Card";
 import CardTracks from "../../../components/CardTracks";
 import ButtonSong from "../../../components/ButtonSong";
 import { hoursComp } from "../../../utils/forCom";
+import { truncate } from "../../../utils/forText";
 
 const Home = () => {
   const user = localStorage.getItem("user");
@@ -73,7 +74,7 @@ const Home = () => {
         )}
         {result?.length > 0 ? (
           <div className={styles.content_search}>
-            <section>
+            <div>
               <h1 className={styles.title}>Melhor resultado</h1>
               {result.map((item) => (
                 <div className={styles.container_result}>
@@ -81,9 +82,8 @@ const Home = () => {
                     className={styles.img_artist}
                     src={item.items[0].album.images[0].url}
                   />
-                  {/* {console.log(item.items[0].images)} */}
                   <div style={{ paddingLeft: "1.5rem" }}>
-                    <h1>{item.items[0].name}</h1>
+                    <h1>{truncate(item.items[0].name, 39)}</h1>
                     <section
                       style={{
                         flexDirection: "row",
@@ -99,7 +99,6 @@ const Home = () => {
                               : value.name
                         )}
                       </span>
-                      {console.log(item.items[0].preview_url)}
                       <ButtonSong
                         hrfe={item.items[0].preview_url}
                         top="0px"
@@ -109,10 +108,37 @@ const Home = () => {
                   </div>
                 </div>
               ))}
-            </section>
+            </div>
             <section>
               <h1 className={styles.title}>Músicas</h1>
-              <div className={styles.container_result}></div>
+              <section>
+                {result.map((item) =>
+                  Object.keys(item.items).map((key) => (
+                    <div className={styles.content_result_track} key={key}>
+                      <img
+                        src={item.items[key].album.images[0].url}
+                        style={{ paddingRight: 10, paddingLeft: 10 }}
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                      <div>
+                        <p className={styles.name_track_result}>
+                          {item.items[key].name}
+                        </p>
+                        <span className={styles.artist_tarcks} >
+                          {Object.values(item.items[key]?.artists).map(
+                            (value, keyk) =>
+                              item.items[key].artists?.length > 1
+                                ? value.name + ", "
+                                : value.name + " "
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </section>
             </section>
           </div>
         ) : (

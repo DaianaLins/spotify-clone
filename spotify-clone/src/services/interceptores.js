@@ -72,14 +72,15 @@ apiSpotifyUser.interceptors.response.use(
   },
   async function (error) {
     const originalRequest = error.config;
-    console.log(error)
-    if (error === 403 && !originalRequest._retry) {
+    if (error === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
+      const refresh_token = localStorage.getItem("token")
+      let access_token = ""
 
-      // const resp = await refreshToken();
-      const resp = {}
+     await refreshToken({refresh_token: refresh_token}).then((res)=>{
+       access_token = res
+     })
 
-      const access_token = resp.response.accessToken;
 
       // addTokenToLocalStorage(access_token);
       apiSpotifyUser.defaults.headers.common[

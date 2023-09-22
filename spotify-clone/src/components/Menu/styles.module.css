@@ -1,7 +1,7 @@
 .container{
     /* height: 100vh; */
     background: #121212;
-    width: 417px;
+    width: 317px;
     flex-direction: column;
     padding:  0 0.5rem 0 0.5rem;
     display: flex;
@@ -9,7 +9,7 @@
 }
 
 .content{
-    width: 417px;
+    width: 317px;
     height: 152px;  
     background: #1a1a1a;
     border-radius: 14px;

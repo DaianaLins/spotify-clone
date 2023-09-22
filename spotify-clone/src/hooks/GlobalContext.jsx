@@ -32,7 +32,7 @@ const GlobalProvider = ({ children }) => {
   } 
 
   const getSearchItems = async ({search}) =>{
-    const res = await apiSpotifyUser.get(`/v1/search?q=${search}&type=album%2Ctrack%2Cplaylist&locale=pt-BR%2Cpt%3Bq%3D0.9&offset=0&limit=20&include_external=audio`)
+    const res = await apiSpotifyUser.get(`/v1/search?q=${search}&type=album%2Ctrack%2Cplaylist&locale=pt-BR%2Cpt%3Bq%3D0.9&offset=0&limit=4&include_external=audio`)
 
     return res
   } 

@@ -17,7 +17,7 @@ const Card = ({ data, icons }) => {
           <div className={styles.content} key={key}>
             <div className={styles.content_module}>
               {item[key].preview_url && (
-                <div style={{position: 'relative', zIndex: 2}}>
+                <div className={styles.button}>
                   <ButtonSong hrfe={item[key].preview_url} key={key} />
                 </div>
               )}

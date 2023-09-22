@@ -37,12 +37,22 @@ a:hover{
     display: none;
 }
 
-button:hover{
-    display: inline-block;
+.button{
+    position: relative; 
+    zIndex: 2;
+    visibility: hidden;
 }
+
 
 .content:hover{
     color: #000;
     background-color: hsla(0,0%,100%,.1);
     transition: all 0.2s;
+
+    .button{
+        position: relative; 
+        zIndex: 2;
+        visibility: visible;
+        transition: all 0.2s;
+    }
   }
